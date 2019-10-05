@@ -1,0 +1,24 @@
+Git working cycle:
+===================
+
+-Files, Folder, Source code, Docs (untracked by git)
+
+-$git init  (create local repository of git)
+
+-stage 
+ $git add . 
+	or
+ $git add -A
+   or
+ $git add file.ext 
+
+-git commit 
+ $git commit -m "first release "
+
+-git push
+
+Files -> git init -> stage -> commit -> push to cloud 
+
+
+
+	

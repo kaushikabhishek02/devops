@@ -1,0 +1,221 @@
+Using username "ubuntu".
+Authenticating with public key "imported-openssh-key"
+Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-1044-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+ System information disabled due to load higher than 1.0
+
+ * Kata Containers are now fully integrated in Charmed Kubernetes 1.16!
+   Yes, charms take the Krazy out of K8s Kata Kluster Konstruction.
+
+     https://ubuntu.com/kubernetes/docs/release-notes
+
+75 packages can be updated.
+32 updates are security updates.
+
+
+Last login: Fri Oct  4 14:59:05 2019 from 150.242.72.154
+ubuntu@ip-10-0-0-89:~$ sudo apt update
+Hit:1 http://ca-central-1.ec2.archive.ubuntu.com/ubuntu bionic InRelease
+Hit:2 http://ca-central-1.ec2.archive.ubuntu.com/ubuntu bionic-updates InRelease
+Hit:3 http://ca-central-1.ec2.archive.ubuntu.com/ubuntu bionic-backports InRelease
+Hit:4 http://security.ubuntu.com/ubuntu bionic-security InRelease
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+65 packages can be upgraded. Run 'apt list --upgradable' to see them.
+ubuntu@ip-10-0-0-89:~$ sudo apt install git-core
+E: Could not get lock /var/lib/dpkg/lock-frontend - open (11: Resource temporarily unavailable)
+E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is another process using it?
+ubuntu@ip-10-0-0-89:~$ sudo apt install git
+E: Could not get lock /var/lib/dpkg/lock-frontend - open (11: Resource temporarily unavailable)
+E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is another process using it?
+ubuntu@ip-10-0-0-89:~$ ps
+  PID TTY          TIME CMD
+ 2225 pts/0    00:00:00 bash
+12068 pts/0    00:00:00 ps
+ubuntu@ip-10-0-0-89:~$ ps -a
+  PID TTY          TIME CMD
+12082 pts/0    00:00:00 ps
+ubuntu@ip-10-0-0-89:~$ git --versioni
+unknown option: --versioni
+usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           <command> [<args>]
+ubuntu@ip-10-0-0-89:~$ git --version
+git version 2.17.1
+ubuntu@ip-10-0-0-89:~$
+ubuntu@ip-10-0-0-89:~$
+ubuntu@ip-10-0-0-89:~$ mkdir test
+ubuntu@ip-10-0-0-89:~$ cd test/
+ubuntu@ip-10-0-0-89:~/test$ cat >a.txt
+hi
+this is test code
+^Z
+[1]+  Stopped                 cat > a.txt
+ubuntu@ip-10-0-0-89:~/test$ ll
+total 12
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct  5 07:14 ./
+drwxr-xr-x 6 ubuntu ubuntu 4096 Oct  5 07:14 ../
+-rw-rw-r-- 1 ubuntu ubuntu   21 Oct  5 07:14 a.txt
+ubuntu@ip-10-0-0-89:~/test$ cat a.txt
+hi
+this is test code
+ubuntu@ip-10-0-0-89:~/test$ git init
+Initialized empty Git repository in /home/ubuntu/test/.git/
+ubuntu@ip-10-0-0-89:~/test$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        a.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+ubuntu@ip-10-0-0-89:~/test$ git add .
+ubuntu@ip-10-0-0-89:~/test$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   a.txt
+
+ubuntu@ip-10-0-0-89:~/test$ sudo nano a.txt
+ubuntu@ip-10-0-0-89:~/test$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   a.txt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   a.txt
+
+ubuntu@ip-10-0-0-89:~/test$ git add .
+ubuntu@ip-10-0-0-89:~/test$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   a.txt
+
+ubuntu@ip-10-0-0-89:~/test$ git commit -m "1.0"
+[master (root-commit) 2407ab0] 1.0
+ Committer: Ubuntu <ubuntu@ip-10-0-0-89.ca-central-1.compute.internal>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 2 insertions(+)
+ create mode 100644 a.txt
+ubuntu@ip-10-0-0-89:~/test$ git config --global user.email "raman@techvisionit.com"
+ubuntu@ip-10-0-0-89:~/test$ git config --global user.name "vimleshtech"       ubuntu@ip-10-0-0-89:~/test$ git commit -m "1.0"
+On branch master
+nothing to commit, working tree clean
+ubuntu@ip-10-0-0-89:~/test$ git status
+On branch master
+nothing to commit, working tree clean
+ubuntu@ip-10-0-0-89:~/test$ git log
+commit 2407ab034d730e39bf53bb730e327c539b52b735 (HEAD -> master)
+Author: Ubuntu <ubuntu@ip-10-0-0-89.ca-central-1.compute.internal>
+Date:   Sat Oct 5 07:19:17 2019 +0000
+
+    1.0
+ubuntu@ip-10-0-0-89:~/test$ sudo nano a.txt
+ubuntu@ip-10-0-0-89:~/test$ sudo nano a.txt
+ubuntu@ip-10-0-0-89:~/test$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   a.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+ubuntu@ip-10-0-0-89:~/test$ git diff a.txt
+diff --git a/a.txt b/a.txt
+index f21dd16..ae38be2 100644
+--- a/a.txt
++++ b/a.txt
+@@ -1,2 +1,5 @@
++test
++
++
+ this is test code
+ bye
+ubuntu@ip-10-0-0-89:~/test$ sudo nano a.txt
+ubuntu@ip-10-0-0-89:~/test$ git diff a.txt
+diff --git a/a.txt b/a.txt
+index f21dd16..7ec97c5 100644
+--- a/a.txt
++++ b/a.txt
+@@ -1,2 +1,5 @@
++test
++
++
+ this is test code
+-bye
++
+ubuntu@ip-10-0-0-89:~/test$
+ubuntu@ip-10-0-0-89:~/test$ git add  a.txt
+ubuntu@ip-10-0-0-89:~/test$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        modified:   a.txt
+
+ubuntu@ip-10-0-0-89:~/test$ git commit -m "code chagne"
+[master 5f3b98a] code chagne
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+ubuntu@ip-10-0-0-89:~/test$ git log
+commit 5f3b98abf6969851a97bda31db283924c69ec46f (HEAD -> master)
+Author: vimleshtech <raman@techvisionit.com>
+Date:   Sat Oct 5 07:25:11 2019 +0000
+
+    code chagne
+
+commit 2407ab034d730e39bf53bb730e327c539b52b735
+Author: Ubuntu <ubuntu@ip-10-0-0-89.ca-central-1.compute.internal>
+Date:   Sat Oct 5 07:19:17 2019 +0000
+
+    1.0
+ubuntu@ip-10-0-0-89:~/test$ git remote add server https://github.com/1Deepesh/my-first-prooject.git
+ubuntu@ip-10-0-0-89:~/test$ git push -u server master
+Username for 'https://github.com': 1DeepeshPrasad@gmail.com
+Password for 'https://1DeepeshPrasad@gmail.com@github.com':
+Counting objects: 6, done.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (6/6), 469 bytes | 469.00 KiB/s, done.
+Total 6 (delta 0), reused 0 (delta 0)
+To https://github.com/1Deepesh/my-first-prooject.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'server'.
+ubuntu@ip-10-0-0-89:~/test$
